@@ -1,0 +1,624 @@
+(function()
+{
+    return function()
+    {
+        if (!this._is_form)
+            return;
+        
+        var obj = null;
+        
+        this.on_create = function()
+        {
+            this.set_name("board_Detail");
+            this.set_titletext("board_Detail");
+            this.set_border("1px solid #9c9c9c");
+            if (Form == this.constructor)
+            {
+                this._setFormPosition(750,521);
+            }
+            
+            // Object(Dataset, ExcelExportObject) Initialize
+            obj = new Dataset("ds_child", this);
+            obj._setContents("");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dsLang", this);
+            obj._setContents("<ColumnInfo><Column id=\"code\" type=\"STRING\" size=\"256\"/><Column id=\"ko\" type=\"STRING\" size=\"256\"/><Column id=\"en\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"code\">L0001</Col><Col id=\"ko\">게시판 상세</Col><Col id=\"en\">board detail</Col></Row><Row><Col id=\"code\">L0002</Col><Col id=\"ko\">게시판명</Col><Col id=\"en\">board name</Col></Row><Row><Col id=\"code\">L0003</Col><Col id=\"ko\">게시판소개내용</Col><Col id=\"en\">introduction</Col></Row><Row><Col id=\"code\">L0004</Col><Col id=\"ko\">게시판 유형</Col><Col id=\"en\">category</Col></Row><Row><Col id=\"code\">L0005</Col><Col id=\"ko\">파일첨부가능여부</Col><Col id=\"en\">file use</Col></Row><Row><Col id=\"code\">L0006</Col><Col id=\"ko\">첨부가능파일숫자</Col><Col id=\"en\">Number of file uses</Col></Row><Row><Col id=\"code\">L0007</Col><Col id=\"ko\">추가선택사항</Col><Col id=\"en\">Additional selection</Col></Row><Row><Col id=\"code\">L0008</Col><Col id=\"ko\">사용여부</Col><Col id=\"en\">Use status</Col></Row><Row><Col id=\"code\">L0009</Col><Col id=\"ko\">등록자</Col><Col id=\"en\">registrant</Col></Row><Row><Col id=\"code\">L0010</Col><Col id=\"ko\">등록일</Col><Col id=\"en\">registration date</Col></Row><Row><Col id=\"code\">L0011</Col><Col id=\"ko\">답장가능여부</Col><Col id=\"en\">reply available</Col></Row><Row><Col id=\"code\">L0012</Col><Col id=\"ko\">게시판 주소</Col><Col id=\"en\">board address</Col></Row><Row><Col id=\"code\">L0013</Col><Col id=\"ko\">수정</Col><Col id=\"en\">update</Col></Row><Row><Col id=\"en\">list</Col><Col id=\"ko\">목록</Col><Col id=\"code\">L0014</Col></Row><Row><Col id=\"code\">L0052</Col><Col id=\"ko\">한국어</Col><Col id=\"en\">Kor</Col></Row><Row><Col id=\"code\">L0053</Col><Col id=\"ko\">영어</Col><Col id=\"en\">Eng</Col></Row></Rows>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("result_data", this);
+            obj._setContents("<ColumnInfo><Column id=\"bbsId\" type=\"STRING\" size=\"256\"/><Column id=\"bbsTyCode\" type=\"STRING\" size=\"256\"/><Column id=\"bbsNm\" type=\"STRING\" size=\"256\"/><Column id=\"bbsIntrcn\" type=\"STRING\" size=\"256\"/><Column id=\"replyPosblAt\" type=\"STRING\" size=\"256\"/><Column id=\"fileAtchPosblAt\" type=\"STRING\" size=\"256\"/><Column id=\"option\" type=\"STRING\" size=\"256\"/><Column id=\"atchPosblFileNumber\" type=\"INT\" size=\"256\"/><Column id=\"atchPosblFileSize\" type=\"INT\" size=\"256\"/><Column id=\"tmplatId\" type=\"STRING\" size=\"256\"/><Column id=\"frstRegisterId\" type=\"STRING\" size=\"256\"/><Column id=\"frstRegisterNm\" type=\"STRING\" size=\"256\"/><Column id=\"frstRegisterPnttm\" type=\"STRING\" size=\"256\"/><Column id=\"frstRegisterNm \" type=\"STRING\" size=\"256\"/><Column id=\"bbsTyCodeNm\" type=\"STRING\" size=\"256\"/><Column id=\"tmplatNm\" type=\"STRING\" size=\"256\"/><Column id=\"lastUpdusrNm\" type=\"STRING\" size=\"256\"/><Column id=\"authFlag\" type=\"STRING\" size=\"256\"/><Column id=\"tmplatCours\" type=\"STRING\" size=\"256\"/><Column id=\"cmmntyId\" type=\"STRING\" size=\"256\"/><Column id=\"useAt\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"bbsId\"/><Col id=\"bbsTyCode\"/><Col id=\"bbsNm\"/><Col id=\"bbsIntrcn\"/><Col id=\"replyPosblAt\"/><Col id=\"fileAtchPosblAt\"/><Col id=\"option\"/><Col id=\"atchPosblFileNumber\"/><Col id=\"atchPosblFileSize\"/><Col id=\"tmplatId\"/><Col id=\"frstRegisterId\"/><Col id=\"frstRegisterNm\"/><Col id=\"frstRegisterPnttm\"/><Col id=\"frstRegisterNm \"/><Col id=\"bbsTyCodeNm\"/><Col id=\"tmplatNm\"/><Col id=\"lastUpdusrNm\"/><Col id=\"authFlag\"/><Col id=\"tmplatCours\"/></Row></Rows>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("BoardMasterVO", this);
+            obj._setContents("<ColumnInfo><Column id=\"bbsId\" type=\"STRING\" size=\"256\"/><Column id=\"searchBgnDe\" type=\"STRING\" size=\"256\"/><Column id=\"searchCnd\" type=\"STRING\" size=\"256\"/><Column id=\"searchEndDe\" type=\"STRING\" size=\"256\"/><Column id=\"searchWrd\" type=\"STRING\" size=\"256\"/><Column id=\"sortOrdr\" type=\"STRING\" size=\"256\"/><Column id=\"searchUseYn\" type=\"STRING\" size=\"256\"/><Column id=\"pageIndex\" type=\"INT\" size=\"256\"/><Column id=\"pageUnit\" type=\"INT\" size=\"256\"/><Column id=\"pageSize\" type=\"INT\" size=\"256\"/><Column id=\"firstIndex\" type=\"INT\" size=\"256\"/><Column id=\"lastIndex\" type=\"INT\" size=\"256\"/><Column id=\"recordCountPerPage\" type=\"INT\" size=\"256\"/><Column id=\"frstRegisterNm \" type=\"STRING\" size=\"256\"/><Column id=\"bbsTyCodeNm\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"searchBgnDe\"/><Col id=\"searchCnd\"/><Col id=\"searchEndDe\"/><Col id=\"searchWrd\"/><Col id=\"sortOrdr\"/><Col id=\"searchUseYn\"/><Col id=\"pageIndex\">1</Col><Col id=\"pageUnit\">10</Col><Col id=\"pageSize\">10</Col><Col id=\"firstIndex\">1</Col><Col id=\"lastIndex\">1</Col><Col id=\"recordCountPerPage\">10</Col><Col id=\"frstRegisterNm \"/><Col id=\"bbsTyCodeNm\"/></Row></Rows>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("searchVO", this);
+            obj._setContents("<ColumnInfo><Column id=\"bbsId\" type=\"STRING\" size=\"256\"/><Column id=\"searchBgnDe\" type=\"STRING\" size=\"256\"/><Column id=\"searchCnd\" type=\"STRING\" size=\"256\"/><Column id=\"searchEndDe\" type=\"STRING\" size=\"256\"/><Column id=\"searchWrd\" type=\"STRING\" size=\"256\"/><Column id=\"sortOrdr\" type=\"STRING\" size=\"256\"/><Column id=\"searchUseYn\" type=\"STRING\" size=\"256\"/><Column id=\"pageIndex\" type=\"INT\" size=\"256\"/><Column id=\"pageUnit\" type=\"INT\" size=\"256\"/><Column id=\"pageSize\" type=\"INT\" size=\"256\"/><Column id=\"firstIndex\" type=\"INT\" size=\"256\"/><Column id=\"lastIndex\" type=\"INT\" size=\"256\"/><Column id=\"recordCountPerPage\" type=\"INT\" size=\"256\"/><Column id=\"frstRegisterNm \" type=\"STRING\" size=\"256\"/><Column id=\"bbsTyCodeNm\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"searchBgnDe\"/><Col id=\"searchCnd\"/><Col id=\"searchEndDe\"/><Col id=\"searchWrd\"/><Col id=\"sortOrdr\"/><Col id=\"searchUseYn\"/><Col id=\"pageIndex\">1</Col><Col id=\"pageUnit\">10</Col><Col id=\"pageSize\">10</Col><Col id=\"firstIndex\">1</Col><Col id=\"lastIndex\">1</Col><Col id=\"recordCountPerPage\">10</Col><Col id=\"frstRegisterNm \"/><Col id=\"bbsTyCodeNm\"/></Row></Rows>");
+            this.addChild(obj.name, obj);
+            
+            // UI Components Initialize
+            obj = new Static("Static06","20","10","250","30",null,null,null,null,null,null,this);
+            obj.set_taborder("0");
+            obj.set_text("게시판 상세");
+            obj.set_cssclass("sta_WF_Subtitle");
+            obj.set_positionstep("-1");
+            obj.getSetter("langcode").set("L0001");
+            this.addChild(obj.name, obj);
+
+            obj = new Div("Div00","22","50","680","280",null,null,null,null,null,null,this);
+            obj.set_taborder("1");
+            obj.set_border("2px solid blue, 0px none, 0px none");
+            obj.set_text("");
+            this.addChild(obj.name, obj);
+
+            obj = new Div("Div00","0","0","680","45",null,null,null,null,null,null,this.Div00.form);
+            obj.set_taborder("0");
+            obj.set_border("0px none, 0px none, 1px solid darkgray");
+            this.Div00.addChild(obj.name, obj);
+
+            obj = new Div("Div01","420","0","138","44",null,null,null,null,null,null,this.Div00.form.Div00.form);
+            obj.set_taborder("0");
+            obj.set_background("#efefef");
+            this.Div00.form.Div00.addChild(obj.name, obj);
+
+            obj = new Static("Static00","17","5","121","34",null,null,null,null,null,null,this.Div00.form.Div00.form.Div01.form);
+            obj.set_taborder("0");
+            obj.set_text("개시판 유형");
+            obj.getSetter("langcode").set("L0004");
+            this.Div00.form.Div00.form.Div01.addChild(obj.name, obj);
+
+            obj = new Div("Div01","0","0","138","44",null,null,null,null,null,null,this.Div00.form);
+            obj.set_taborder("1");
+            obj.set_background("#efefef");
+            this.Div00.addChild(obj.name, obj);
+
+            obj = new Static("Static00","17","5","121","34",null,null,null,null,null,null,this.Div00.form.Div01.form);
+            obj.set_taborder("0");
+            obj.set_text("게시판명");
+            obj.getSetter("langcode").set("L0002");
+            this.Div00.form.Div01.addChild(obj.name, obj);
+
+            obj = new Div("Div00_00","0","45","680","34",null,null,null,null,null,null,this.Div00.form);
+            obj.set_taborder("2");
+            obj.set_border("0px none, 0px none, 1px solid darkgray");
+            obj.set_text("");
+            this.Div00.addChild(obj.name, obj);
+
+            obj = new Div("Div01_00","270","0","118","33",null,null,null,null,null,null,this.Div00.form.Div00_00.form);
+            obj.set_taborder("0");
+            obj.set_background("#efefef");
+            this.Div00.form.Div00_00.addChild(obj.name, obj);
+
+            obj = new Static("Static00","7","-1","53","34",null,null,null,null,null,null,this.Div00.form.Div00_00.form.Div01_00.form);
+            obj.set_taborder("0");
+            obj.set_text("등록일");
+            obj.getSetter("langcode").set("L0010");
+            this.Div00.form.Div00_00.form.Div01_00.addChild(obj.name, obj);
+
+            obj = new Div("Div01_00_00","500","0","117","33",null,null,null,null,null,null,this.Div00.form.Div00_00.form);
+            obj.set_taborder("1");
+            obj.set_background("#efefef");
+            this.Div00.form.Div00_00.addChild(obj.name, obj);
+
+            obj = new Static("Static00","7","0","53","33",null,null,null,null,null,null,this.Div00.form.Div00_00.form.Div01_00_00.form);
+            obj.set_taborder("0");
+            obj.set_text("사용여부");
+            obj.getSetter("langcode").set("L0008");
+            this.Div00.form.Div00_00.form.Div01_00_00.addChild(obj.name, obj);
+
+            obj = new Div("Div01_00","0","45","138","33",null,null,null,null,null,null,this.Div00.form);
+            obj.set_taborder("3");
+            obj.set_background("#efefef");
+            this.Div00.addChild(obj.name, obj);
+
+            obj = new Static("Static00","17","-1","121","34",null,null,null,null,null,null,this.Div00.form.Div01_00.form);
+            obj.set_taborder("0");
+            obj.set_text("등록자");
+            obj.getSetter("langcode").set("L0009");
+            this.Div00.form.Div01_00.addChild(obj.name, obj);
+
+            obj = new Div("Div00_01","0","115","680","63",null,null,null,null,null,null,this.Div00.form);
+            obj.set_taborder("4");
+            obj.set_border("0px none, 0px none, 1px solid darkgray");
+            obj.set_text("");
+            this.Div00.addChild(obj.name, obj);
+
+            obj = new Div("Div01_01","0","115","138","62",null,null,null,null,null,null,this.Div00.form);
+            obj.set_taborder("5");
+            obj.set_background("#efefef");
+            this.Div00.addChild(obj.name, obj);
+
+            obj = new Static("Static00","17","5","121","34",null,null,null,null,null,null,this.Div00.form.Div01_01.form);
+            obj.set_taborder("0");
+            obj.set_text("게시판소개내용");
+            obj.getSetter("langcode").set("L0003");
+            this.Div00.form.Div01_01.addChild(obj.name, obj);
+
+            obj = new Div("Div00_02_01","0","178","680","44",null,null,null,null,null,null,this.Div00.form);
+            obj.set_taborder("6");
+            obj.set_border("0px none, 0px none, 1px solid darkgray");
+            obj.set_semantictag("aside");
+            this.Div00.addChild(obj.name, obj);
+
+            obj = new Div("Div01_03","0","0","138","43",null,null,null,null,null,null,this.Div00.form.Div00_02_01.form);
+            obj.set_taborder("0");
+            obj.set_background("#efefef");
+            this.Div00.form.Div00_02_01.addChild(obj.name, obj);
+
+            obj = new Static("Static00","17","5","121","34",null,null,null,null,null,null,this.Div00.form.Div00_02_01.form.Div01_03.form);
+            obj.set_taborder("0");
+            obj.set_text("게시판 주소");
+            obj.getSetter("langcode").set("L0012");
+            this.Div00.form.Div00_02_01.form.Div01_03.addChild(obj.name, obj);
+
+            obj = new Div("Div00_02_01_00","0","222","680","44",null,null,null,null,null,null,this.Div00.form);
+            obj.set_taborder("7");
+            obj.set_border("0px none, 0px none, 1px solid darkgray");
+            obj.set_text("");
+            this.Div00.addChild(obj.name, obj);
+
+            obj = new Div("Div01_03","0","0","138","43",null,null,null,null,null,null,this.Div00.form.Div00_02_01_00.form);
+            obj.set_taborder("0");
+            obj.set_background("#efefef");
+            this.Div00.form.Div00_02_01_00.addChild(obj.name, obj);
+
+            obj = new Static("Static00","17","5","121","33",null,null,null,null,null,null,this.Div00.form.Div00_02_01_00.form.Div01_03.form);
+            obj.set_taborder("0");
+            obj.set_text("추가선택사항");
+            obj.getSetter("langcode").set("L0007");
+            this.Div00.form.Div00_02_01_00.form.Div01_03.addChild(obj.name, obj);
+
+            obj = new Div("Div00_00_00","0","80","680","34",null,null,null,null,null,null,this.Div00.form);
+            obj.set_taborder("8");
+            obj.set_border("0px none, 0px none, 1px solid darkgray");
+            obj.set_text("");
+            this.Div00.addChild(obj.name, obj);
+
+            obj = new Div("Div01_00","270","0","118","33",null,null,null,null,null,null,this.Div00.form.Div00_00_00.form);
+            obj.set_taborder("0");
+            obj.set_background("#efefef");
+            this.Div00.form.Div00_00_00.addChild(obj.name, obj);
+
+            obj = new Static("Static00","7","-2","101","34",null,null,null,null,null,null,this.Div00.form.Div00_00_00.form.Div01_00.form);
+            obj.set_taborder("0");
+            obj.set_text("파일첨부가능여부");
+            obj.getSetter("langcode").set("L0005");
+            this.Div00.form.Div00_00_00.form.Div01_00.addChild(obj.name, obj);
+
+            obj = new Div("Div01_00_00","500","0","117","33",null,null,null,null,null,null,this.Div00.form.Div00_00_00.form);
+            obj.set_taborder("1");
+            obj.set_background("#efefef");
+            this.Div00.form.Div00_00_00.addChild(obj.name, obj);
+
+            obj = new Static("Static00","7","-2","99","34",null,null,null,null,null,null,this.Div00.form.Div00_00_00.form.Div01_00_00.form);
+            obj.set_taborder("0");
+            obj.set_text("첨부가능파일숫자");
+            obj.getSetter("langcode").set("L0006");
+            obj.set_enableevent("false");
+            this.Div00.form.Div00_00_00.form.Div01_00_00.addChild(obj.name, obj);
+
+            obj = new Div("Div01_00_01","0","0","138","33",null,null,null,null,null,null,this.Div00.form.Div00_00_00.form);
+            obj.set_taborder("2");
+            obj.set_background("#efefef");
+            this.Div00.form.Div00_00_00.addChild(obj.name, obj);
+
+            obj = new Static("Static00","17","-1","121","34",null,null,null,null,null,null,this.Div00.form.Div00_00_00.form.Div01_00_01.form);
+            obj.set_taborder("0");
+            obj.set_text("답장가능여부");
+            obj.getSetter("langcode").set("L0011");
+            this.Div00.form.Div00_00_00.form.Div01_00_01.addChild(obj.name, obj);
+
+            obj = new Button("btnKor",null,"13","76","28","111",null,null,null,null,null,this);
+            obj.set_taborder("3");
+            obj.set_text("한국어");
+            obj.set_cssclass("btn_WF_delete01");
+            obj.getSetter("langcode").set("L0052");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("btnEng",null,"13","76","28","31",null,null,null,null,null,this);
+            obj.set_taborder("4");
+            obj.set_text("영어");
+            obj.set_cssclass("btn_WF_delete01");
+            obj.getSetter("langcode").set("L0053");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("Static00","17","-285","121","34",null,null,null,null,null,null,this);
+            obj.set_taborder("2");
+            obj.set_text("추가선택사항");
+            obj.getSetter("langcode").set("L0007");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("sta_option","170","284","232","26",null,null,null,null,null,null,this);
+            obj.set_taborder("5");
+            obj.set_text("option");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("sta_bbsNm","170","59","252","31",null,null,null,null,null,null,this);
+            obj.set_taborder("6");
+            obj.set_usedecorate("true");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("sta_bbsTyCodeNm","590","59","97","31",null,null,null,null,null,null,this);
+            obj.set_taborder("7");
+            obj.set_text("Static01");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("sta_frstRegisterNm","170","102","100","26",null,null,null,null,null,null,this);
+            obj.set_taborder("8");
+            obj.set_text("frstRegisterNm");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("sta_frstRegisterPnttm","411","102","100","26",null,null,null,null,null,null,this);
+            obj.set_taborder("9");
+            obj.set_text("frstRegisterPnttm");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("sta_useAt","651","104","48","26",null,null,null,null,null,null,this);
+            obj.set_taborder("10");
+            obj.set_text("useAt");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("sta_replyPosblAt","178","132","100","26",null,null,null,null,null,null,this);
+            obj.set_taborder("11");
+            obj.set_text("replyPosblAt");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("sta_fileAtchPosblAt","410","132","100","26",null,null,null,null,null,null,this);
+            obj.set_taborder("12");
+            obj.set_text("fileAtchPosblAt");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("sta_atchPosblFileNumber","646","132","42","26",null,null,null,null,null,null,this);
+            obj.set_taborder("13");
+            obj.set_text("atchPosblFileNumber");
+            this.addChild(obj.name, obj);
+
+            obj = new TextArea("txt_bbsIntrcn","170","172","396","50",null,null,null,null,null,null,this);
+            obj.set_taborder("14");
+            obj.set_readonly("true");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("sta_open","171","237","100","26",null,null,null,null,null,null,this);
+            obj.set_taborder("15");
+            obj.set_text("다른테이블(?)");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("btn_udate","555","336","73","29",null,null,null,null,null,null,this);
+            obj.set_taborder("16");
+            obj.set_text("수정");
+            obj.getSetter("langcode").set("L0013");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("btn_close","635","336","73","29",null,null,null,null,null,null,this);
+            obj.set_taborder("17");
+            obj.set_text("목록");
+            obj.getSetter("langcode").set("L0014");
+            this.addChild(obj.name, obj);
+
+            obj = new Grid("Grid00","71","375","575","83",null,null,null,null,null,null,this);
+            obj.set_taborder("18");
+            obj.set_binddataset("BoardMasterVO");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"80\"/><Column size=\"80\"/><Column size=\"80\"/><Column size=\"80\"/><Column size=\"80\"/><Column size=\"80\"/><Column size=\"80\"/><Column size=\"80\"/><Column size=\"80\"/><Column size=\"80\"/><Column size=\"80\"/><Column size=\"80\"/><Column size=\"80\"/><Column size=\"80\"/><Column size=\"80\"/></Columns><Rows><Row band=\"head\" size=\"24\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"bbsId\"/><Cell col=\"1\" text=\"searchBgnDe\"/><Cell col=\"2\" text=\"searchCnd\"/><Cell col=\"3\" text=\"searchEndDe\"/><Cell col=\"4\" text=\"searchWrd\"/><Cell col=\"5\" text=\"sortOrdr\"/><Cell col=\"6\" text=\"searchUseYn\"/><Cell col=\"7\" text=\"pageIndex\"/><Cell col=\"8\" text=\"pageUnit\"/><Cell col=\"9\" text=\"pageSize\"/><Cell col=\"10\" text=\"firstIndex\"/><Cell col=\"11\" text=\"lastIndex\"/><Cell col=\"12\" text=\"recordCountPerPage\"/><Cell col=\"13\" text=\"frstRegisterNm \"/><Cell col=\"14\" text=\"bbsTyCodeNm\"/></Band><Band id=\"body\"><Cell text=\"bind:bbsId\"/><Cell col=\"1\" text=\"bind:searchBgnDe\"/><Cell col=\"2\" text=\"bind:searchCnd\"/><Cell col=\"3\" text=\"bind:searchEndDe\"/><Cell col=\"4\" text=\"bind:searchWrd\"/><Cell col=\"5\" text=\"bind:sortOrdr\"/><Cell col=\"6\" text=\"bind:searchUseYn\"/><Cell col=\"7\" text=\"bind:pageIndex\"/><Cell col=\"8\" text=\"bind:pageUnit\"/><Cell col=\"9\" text=\"bind:pageSize\"/><Cell col=\"10\" text=\"bind:firstIndex\"/><Cell col=\"11\" text=\"bind:lastIndex\"/><Cell col=\"12\" text=\"bind:recordCountPerPage\"/><Cell col=\"13\" text=\"bind:frstRegisterNm \"/><Cell col=\"14\" text=\"bind:bbsTyCodeNm\"/></Band></Format></Formats>");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("sta_bbsid","212","18","147","20",null,null,null,null,null,null,this);
+            obj.set_taborder("19");
+            obj.set_text("Static01");
+            this.addChild(obj.name, obj);
+            // Layout Functions
+            //-- Default Layout : this.Div00.form.Div00.form.Div01.form
+            obj = new Layout("default","",0,0,this.Div00.form.Div00.form.Div01.form,function(p){});
+            this.Div00.form.Div00.form.Div01.form.addLayout(obj.name, obj);
+
+            //-- Default Layout : this.Div00.form.Div00.form
+            obj = new Layout("default","",0,0,this.Div00.form.Div00.form,function(p){});
+            this.Div00.form.Div00.form.addLayout(obj.name, obj);
+
+            //-- Default Layout : this.Div00.form.Div01.form
+            obj = new Layout("default","",0,0,this.Div00.form.Div01.form,function(p){});
+            this.Div00.form.Div01.form.addLayout(obj.name, obj);
+
+            //-- Default Layout : this.Div00.form.Div00_00.form.Div01_00.form
+            obj = new Layout("default","",0,0,this.Div00.form.Div00_00.form.Div01_00.form,function(p){});
+            this.Div00.form.Div00_00.form.Div01_00.form.addLayout(obj.name, obj);
+
+            //-- Default Layout : this.Div00.form.Div00_00.form.Div01_00_00.form
+            obj = new Layout("default","",0,0,this.Div00.form.Div00_00.form.Div01_00_00.form,function(p){});
+            this.Div00.form.Div00_00.form.Div01_00_00.form.addLayout(obj.name, obj);
+
+            //-- Default Layout : this.Div00.form.Div00_00.form
+            obj = new Layout("default","",0,0,this.Div00.form.Div00_00.form,function(p){});
+            this.Div00.form.Div00_00.form.addLayout(obj.name, obj);
+
+            //-- Default Layout : this.Div00.form.Div01_00.form
+            obj = new Layout("default","",0,0,this.Div00.form.Div01_00.form,function(p){});
+            this.Div00.form.Div01_00.form.addLayout(obj.name, obj);
+
+            //-- Default Layout : this.Div00.form.Div00_01.form
+            obj = new Layout("default","",0,0,this.Div00.form.Div00_01.form,function(p){});
+            this.Div00.form.Div00_01.form.addLayout(obj.name, obj);
+
+            //-- Default Layout : this.Div00.form.Div01_01.form
+            obj = new Layout("default","",0,0,this.Div00.form.Div01_01.form,function(p){});
+            this.Div00.form.Div01_01.form.addLayout(obj.name, obj);
+
+            //-- Default Layout : this.Div00.form.Div00_02_01.form.Div01_03.form
+            obj = new Layout("default","",0,0,this.Div00.form.Div00_02_01.form.Div01_03.form,function(p){});
+            this.Div00.form.Div00_02_01.form.Div01_03.form.addLayout(obj.name, obj);
+
+            //-- Default Layout : this.Div00.form.Div00_02_01.form
+            obj = new Layout("default","",0,0,this.Div00.form.Div00_02_01.form,function(p){});
+            this.Div00.form.Div00_02_01.form.addLayout(obj.name, obj);
+
+            //-- Default Layout : this.Div00.form.Div00_02_01_00.form.Div01_03.form
+            obj = new Layout("default","",0,0,this.Div00.form.Div00_02_01_00.form.Div01_03.form,function(p){});
+            this.Div00.form.Div00_02_01_00.form.Div01_03.form.addLayout(obj.name, obj);
+
+            //-- Default Layout : this.Div00.form.Div00_02_01_00.form
+            obj = new Layout("default","",0,0,this.Div00.form.Div00_02_01_00.form,function(p){});
+            this.Div00.form.Div00_02_01_00.form.addLayout(obj.name, obj);
+
+            //-- Default Layout : this.Div00.form.Div00_00_00.form.Div01_00.form
+            obj = new Layout("default","",0,0,this.Div00.form.Div00_00_00.form.Div01_00.form,function(p){});
+            this.Div00.form.Div00_00_00.form.Div01_00.form.addLayout(obj.name, obj);
+
+            //-- Default Layout : this.Div00.form.Div00_00_00.form.Div01_00_00.form
+            obj = new Layout("default","",0,0,this.Div00.form.Div00_00_00.form.Div01_00_00.form,function(p){});
+            this.Div00.form.Div00_00_00.form.Div01_00_00.form.addLayout(obj.name, obj);
+
+            //-- Default Layout : this.Div00.form.Div00_00_00.form.Div01_00_01.form
+            obj = new Layout("default","",0,0,this.Div00.form.Div00_00_00.form.Div01_00_01.form,function(p){});
+            this.Div00.form.Div00_00_00.form.Div01_00_01.form.addLayout(obj.name, obj);
+
+            //-- Default Layout : this.Div00.form.Div00_00_00.form
+            obj = new Layout("default","",0,0,this.Div00.form.Div00_00_00.form,function(p){});
+            this.Div00.form.Div00_00_00.form.addLayout(obj.name, obj);
+
+            //-- Default Layout : this.Div00.form
+            obj = new Layout("default","",0,0,this.Div00.form,function(p){});
+            this.Div00.form.addLayout(obj.name, obj);
+
+            //-- Default Layout : this
+            obj = new Layout("default","",750,521,this,function(p){});
+            obj.set_stepcount("0");
+            this.addLayout(obj.name, obj);
+            
+            // BindItem Information
+
+            
+            // TriggerItem Information
+
+        };
+        
+        this.loadPreloadList = function()
+        {
+
+        };
+        
+        // User Script
+        this.addIncludeScript("board_Detail.xfdl","board::langCnt.xjs");
+        this.registerScript("board_Detail.xfdl", function() {
+        this.executeIncludeScript("board::langCnt.xjs"); /*include "board::langCnt.xjs"*/;
+
+        /***********************************************************************
+        *  MenuPath
+        *  FileName    board_Detail.xfdl
+        *  Creator     ex) 홍길동
+        *  CreateDate  2023/02/28
+        *  Desction	   ex) 코드관리
+        *************************************************************************
+        *  date                     Modifier                 Description
+        *************************************************************************
+        *  2023/02/28                ex) 홍길동                  최초 생성
+        ************************************************************************/
+
+
+        /**************************************************************************
+         * FORM 변수 선언 영역
+         **************************************************************************/
+
+
+        /************************************************************************
+         * FORM EVENT 영역(onload, onbeforeclose)
+        ************************************************************************/
+
+
+
+        this.board_Detail_onload = function(obj,e)
+        {
+        	var strParam1=this.parent.set_bbsid;
+        	this.fnSearchDetail(strParam1);
+        };
+
+
+        this.fnSearchDetail = function(get_bbsId)
+        {
+
+        	this.searchVO.setColumn(0,"bbsId"  , get_bbsId);
+        	this.result_data.clearData();
+
+        	var sId 	= "Detail";
+        	var sUrl 	= "svcUrl::/cop/bbs/selectBBSMasterDetail_nexacro.do";
+        	var sInDs 	= "searchVO=searchVO";
+        	var sOutDs 	= "result_data=result_data";
+        	var sParam 	= "";
+        	var sCallback 	= "fnCallback";
+        	var isAsync     = true;
+        	this.transaction(sId, sUrl, sInDs, sOutDs, sParam, sCallback,isAsync);
+        };
+
+        this.fnCallback = function(sId,errCode,errMsg)
+        {
+        	if(sId == "Detail")
+        	{
+        		this.gfnsetbind_form();
+        	}
+        }
+
+
+        //파라미터 바인드
+        this.gfnsetbind_form = function(){
+
+        	this.sta_bbsNm.set_text(this.result_data.getColumn(0,"bbsNm"));
+        	this.sta_bbsTyCodeNm.set_text(this.result_data.getColumn(0,"bbsTyCodeNm"));
+        	this.sta_frstRegisterNm.set_text(this.result_data.getColumn(0,"frstRegisterNm"));
+        	this.sta_frstRegisterPnttm.set_text(this.result_data.getColumn(0,"frstRegisterPnttm"));
+        	this.sta_useAt.set_text(this.result_data.getColumn(0,"useAt"));
+        	this.sta_replyPosblAt.set_text(this.result_data.getColumn(0,"replyPosblAt"));
+        	this.sta_fileAtchPosblAt.set_text(this.result_data.getColumn(0,"fileAtchPosblAt"));
+        	this.sta_atchPosblFileNumber.set_text(this.result_data.getColumn(0,"atchPosblFileNumber"));
+        	this.txt_bbsIntrcn.set_value(this.result_data.getColumn(0,"bbsIntrcn"));
+
+
+        	var get_option= this.result_data.getColumn(0,"option")
+        	var option_value="";
+        	if(get_option == "comment"){
+        		option_value="댓글(Comments)";
+        	}else if(get_option == "stsfdg"){
+        		option_value="만족도조사(Satisfactions)";
+        	}else{
+        		option_value="";
+        	}
+
+        	this.sta_option.set_text(option_value);
+        }
+
+
+
+        /************************************************************************
+         * 공통버튼 CRUD 및 TRANSACTION 서비스 호출 처리
+        ************************************************************************/
+        /**
+        * @class   : 조회
+        * @param   : N/A
+        * @return  : N/A
+        */
+        this.fnSearch = function () {
+
+        };
+
+        /**
+        * @class   : 수정
+        * @param   : N/A
+        * @return  : N/A
+        */
+
+        this.btn_udate_onclick = function(obj,e)
+        {
+        	this.parent.set_url("board::board_Update.xfdl");
+        };
+
+
+
+
+        /**
+        * @class   : 삭제
+        * @param   : N/A
+        * @return  : N/A
+        */
+        this.fnDelete = function () {
+
+        };
+
+        /**
+        * @class   : 출력
+        * @param   : N/A
+        * @return  : N/A
+        */
+        this.fnPrint = function () {
+
+        	//this.gfn_setGridPopup(null);
+        	//this.gfnTest(null);
+        };
+
+        /************************************************************************
+         * Extra 버튼 영역
+        ************************************************************************/
+
+        // add row
+
+
+        // delete row
+
+
+        /************************************************************************
+         * DataSet EVENT 영역
+        ************************************************************************/
+        this.ds_Gender_cancolumnchange = function(obj,e)
+        {
+
+        };
+
+
+        /************************************************************************
+         * 사용자 FUNCTION 영역
+        ************************************************************************/
+
+        this.btn_close_onclick = function(obj,e)
+        {
+        	this.parent.set_url("board::board_List.xfdl");
+        };
+
+
+        this.btnKor_onclick = function(obj,e)
+        {
+        	//선택된 언어에 맞춰 Radio, Combo 데이터셋 변경
+        	//this.rdoAccuntType.set_innerdataset("dsType");
+        	//this.cboDealType.set_innerdataset("dsDealType");
+
+        	//레이블 변경 함수 호출
+        	this.gfnChangeLanguage("ko", this);
+        };
+
+        this.btnEng_onclick = function(obj,e)
+        {
+        	//선택된 언어에 맞춰 Radio, Combo 데이터셋 변경
+        	//this.rdoAccuntType.set_innerdataset("dsType_en");
+        	//this.cboDealType.set_innerdataset("dsDealType_en");
+
+        	//레이블 변경 함수 호출
+        	this.gfnChangeLanguage("en", this);
+        };
+
+
+
+
+
+
+        });
+        
+        // Regist UI Components Event
+        this.on_initEvent = function()
+        {
+            this.addEventHandler("onload",this.board_Detail_onload,this);
+            this.Static06.addEventHandler("onclick",this.Static06_onclick,this);
+            this.Div00.form.Div00.form.Div01.form.Static00.addEventHandler("onclick",this.Div00_Div01_01_Static00_onclick,this);
+            this.Div00.form.Div01.form.Static00.addEventHandler("onclick",this.Div00_Div01_Static00_onclick,this);
+            this.Div00.form.Div00_00.form.Div01_00.form.Static00.addEventHandler("onclick",this.Div00_Div01_Static00_onclick,this);
+            this.Div00.form.Div00_00.form.Div01_00_00.form.Static00.addEventHandler("onclick",this.Div00_Div00_02_01_00_00_Div01_03_Static00_onclick,this);
+            this.Div00.form.Div01_00.form.Static00.addEventHandler("onclick",this.Div00_Div01_Static00_onclick,this);
+            this.Div00.form.Div00_02_01_00.form.Div01_03.form.Static00.addEventHandler("onclick",this.Div00_Div00_02_01_00_Div01_03_Static00_onclick,this);
+            this.Div00.form.Div00_00_00.form.Div01_00_00.form.Static00.addEventHandler("onclick",this.Div00_Div01_03_Static00_onclick,this);
+            this.Div00.form.Div00_00_00.form.Div01_00_01.form.Static00.addEventHandler("onclick",this.Div00_Div01_Static00_onclick,this);
+            this.btnKor.addEventHandler("onclick",this.btnKor_onclick,this);
+            this.btnEng.addEventHandler("onclick",this.btnEng_onclick,this);
+            this.sta_bbsNm.addEventHandler("onclick",this.Div00_Div00_sta_bbsNm_onclick,this);
+            this.sta_replyPosblAt.addEventHandler("onclick",this.Div00_Div00_00_00_Static00_onclick,this);
+            this.sta_open.addEventHandler("onclick",this.Div00_Div00_02_01_Static00_onclick,this);
+            this.btn_udate.addEventHandler("onclick",this.btn_udate_onclick,this);
+            this.btn_close.addEventHandler("onclick",this.btn_close_onclick,this);
+        };
+        this.loadIncludeScript("board_Detail.xfdl");
+        this.loadPreloadList();
+        
+        // Remove Reference
+        obj = null;
+    };
+}
+)();
